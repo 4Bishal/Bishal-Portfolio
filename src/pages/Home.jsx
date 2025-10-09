@@ -4,6 +4,7 @@ import { StarBackground } from '../components/StarBackground'
 import { Navbar } from '../components/Navbar'
 import { HeroSection } from '../components/HeroSection'
 import { AboutSection } from '../components/AboutSection'
+import { SkillsSection } from '../components/SkillSection'
 
 export const Home = () => {
     return (
@@ -26,6 +27,7 @@ export const Home = () => {
             <main>
                 <HeroSection />
                 <AboutSection />
+                <SkillsSection />
             </main>
 
 
