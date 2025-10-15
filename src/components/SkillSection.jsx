@@ -1,21 +1,9 @@
 import { useState, useEffect } from "react";
 import {
-    SiHtml5,
-    SiCss3,
-    SiJavascript,
-    SiReact,
-    SiTailwindcss,
-    SiNodedotjs,
-    SiMongodb,
-    SiPostman,
-    SiCloudinary,
-    SiRedux,
-    SiDocker,
-    SiKubernetes,
-    SiCplusplus,
-    SiTypescript,
-    SiPostgresql,
-    SiGraphql,
+    SiHtml5, SiCss3, SiJavascript, SiReact, SiTailwindcss,
+    SiNodedotjs, SiMongodb, SiPostman, SiCloudinary,
+    SiRedux, SiDocker, SiKubernetes, SiCplusplus,
+    SiTypescript, SiPostgresql, SiGraphql
 } from "react-icons/si";
 import { Code2, Palette, Server, Wrench } from "lucide-react";
 
@@ -83,20 +71,38 @@ const categoryInfo = {
 export const SkillsSection = () => {
     const [activeCategory, setActiveCategory] = useState("Frontend");
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [hoverStyle, setHoverStyle] = useState({});
+    const categories = Object.keys(categoryInfo);
+    const filteredSkills = skills.filter((s) => s.category === activeCategory);
 
-    // Listen to theme changes dynamically
+    // Detect dark mode
     useEffect(() => {
         const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
         setIsDarkMode(matchMedia.matches);
-
         const listener = (e) => setIsDarkMode(e.matches);
         matchMedia.addEventListener("change", listener);
-
         return () => matchMedia.removeEventListener("change", listener);
     }, []);
 
-    const categories = Object.keys(categoryInfo);
-    const filteredSkills = skills.filter((s) => s.category === activeCategory);
+    // Skill card tilt
+    const handleMouseMove = (e, idx) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * 8;
+        const rotateY = ((x - centerX) / centerX) * -8;
+        setHoverStyle((prev) => ({
+            ...prev,
+            [idx]: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`,
+        }));
+    };
+
+    const handleMouseLeave = (idx) => {
+        setHoverStyle((prev) => ({ ...prev, [idx]: "rotateX(0deg) rotateY(0deg) scale(1)" }));
+    };
 
     return (
         <section id="skills" className="py-24 px-4 relative">
@@ -111,16 +117,37 @@ export const SkillsSection = () => {
                     </p>
                 </div>
 
-                {/* Category Navigation */}
+                {/* Category Navigation with small badge counts */}
                 <div className="flex flex-wrap justify-center gap-3 mb-12">
-                    {categories.map((cat) => {
+                    {categories.map((cat, idx) => {
                         const Icon = categoryInfo[cat].icon;
                         const isActive = activeCategory === cat;
+                        const count = skills.filter((s) => s.category === cat).length;
+
+                        const [tiltStyle, setTiltStyle] = useState("rotateX(0deg) rotateY(0deg) scale(1)");
+
+                        const handleTiltMove = (e) => {
+                            const card = e.currentTarget;
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
+                            const centerX = rect.width / 2;
+                            const centerY = rect.height / 2;
+                            const rotateX = ((y - centerY) / centerY) * 6;
+                            const rotateY = ((x - centerX) / centerX) * -6;
+                            setTiltStyle(`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`);
+                        };
+
+                        const handleTiltLeave = () => setTiltStyle("rotateX(0deg) rotateY(0deg) scale(1)");
+
                         return (
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
-                                className={`group relative px-6 py-3 rounded-full font-medium transition-all duration-300 ${isActive
+                                onMouseMove={handleTiltMove}
+                                onMouseLeave={handleTiltLeave}
+                                style={{ transform: tiltStyle }}
+                                className={`group relative px-6 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer ${isActive
                                     ? "bg-primary text-white shadow-lg"
                                     : "bg-card text-foreground border border-border hover:border-primary/50"
                                     }`}
@@ -128,6 +155,11 @@ export const SkillsSection = () => {
                                 <div className="flex items-center gap-2">
                                     <Icon className="w-5 h-5" />
                                     <span>{cat}</span>
+                                </div>
+
+                                {/* Small count badge */}
+                                <div className="absolute -top-3 -right-3 w-7 h-7 rounded-full flex items-center justify-center bg-card dark:bg-card-dark shadow-md">
+                                    <span className="text-xs font-semibold text-foreground">{count}</span>
                                 </div>
                             </button>
                         );
@@ -143,11 +175,13 @@ export const SkillsSection = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {filteredSkills.map((skill, idx) => {
                         const Icon = skill.icon;
-
                         return (
                             <div
                                 key={idx}
-                                className="group relative bg-card rounded-2xl p-6 border border-border hover:border-primary/50 transition-all duration-300"
+                                onMouseMove={(e) => handleMouseMove(e, idx)}
+                                onMouseLeave={() => handleMouseLeave(idx)}
+                                style={{ transform: hoverStyle[idx] || "rotateX(0deg) rotateY(0deg) scale(1)" }}
+                                className="group relative bg-card rounded-2xl p-6 border border-border hover:border-primary/50 transition-all duration-300 shadow-md cursor-pointer will-change-transform"
                             >
                                 <div className="relative flex items-center gap-4 mb-4">
                                     <div className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 bg-card dark:bg-card-dark">
@@ -162,13 +196,12 @@ export const SkillsSection = () => {
                                             <Icon className="w-8 h-8" style={{ color: skill.color }} />
                                         )}
                                     </div>
-
                                     <div className="flex-1">
                                         <h3 className="text-lg font-semibold text-foreground">{skill.name}</h3>
                                     </div>
                                 </div>
 
-                                {/* Proficiency Badge (hidden by default, show on hover) */}
+                                {/* Proficiency Badge */}
                                 <div className="mt-3 text-xs font-medium opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 origin-top">
                                     <span
                                         className={`px-3 py-1 rounded-full ${skill.level >= 85
@@ -185,7 +218,6 @@ export const SkillsSection = () => {
                                                 : "📚 Beginner"}
                                     </span>
                                 </div>
-
                             </div>
                         );
                     })}
