@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const navItems = [
     { name: "Home", href: "#hero" },
@@ -10,11 +11,13 @@ const navItems = [
     { name: "Contact", href: "#contact" },
 ];
 
+
 export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [activeSection, setActiveSection] = useState("#hero");
+    const navigate = useNavigate();
 
     // Initialize theme
     useEffect(() => {
@@ -85,7 +88,7 @@ export const Navbar = () => {
         >
             <div className="container flex items-center justify-between">
                 {/* Logo */}
-                <a className="text-xl font-bold text-primary flex items-center" href="#hero">
+                <a className="text-xl font-bold text-primary flex items-center" href="#hero" onClick={() => navigate("/#home")}>
                     <span className="relative z-10">
                         <span className="text-glow text-foreground">Bishal Bhandari</span> Portfolio
                     </span>
@@ -158,29 +161,6 @@ export const Navbar = () => {
                     ))}
                 </div>
             </div>
-
-            {/* Neon bounce animation */}
-            <style jsx>{`
-        @keyframes bounce-neon {
-          0% {
-            transform: scaleX(0);
-            opacity: 0;
-          }
-          50% {
-            transform: scaleX(1.1);
-            opacity: 1;
-          }
-          70% {
-            transform: scaleX(0.95);
-          }
-          100% {
-            transform: scaleX(1);
-          }
-        }
-        .animate-bounce-neon {
-          animation: bounce-neon 0.6s ease forwards;
-        }
-      `}</style>
         </nav>
     );
 };
