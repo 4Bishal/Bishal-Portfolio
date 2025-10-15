@@ -27,7 +27,7 @@ export const Home = () => {
 
             {/* Main Content */}
 
-            <main>
+            <main className="pt-5">
                 <HeroSection />
                 <AboutSection />
                 <SkillsSection />
