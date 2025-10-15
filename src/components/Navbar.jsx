@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
     { name: "Home", href: "#hero" },
@@ -11,13 +11,12 @@ const navItems = [
     { name: "Contact", href: "#contact" },
 ];
 
-
 export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [activeSection, setActiveSection] = useState("#hero");
-    const navigate = useNavigate();
+    const { hash } = useLocation();
 
     // Initialize theme
     useEffect(() => {
@@ -31,6 +30,7 @@ export const Navbar = () => {
         }
     }, []);
 
+    // Theme toggle
     const handleToggle = () => {
         if (isDarkMode) {
             document.documentElement.classList.remove("dark");
@@ -52,7 +52,7 @@ export const Navbar = () => {
             navItems.forEach((item) => {
                 const section = document.querySelector(item.href);
                 if (section) {
-                    const sectionTop = section.offsetTop - 120; // navbar height offset
+                    const sectionTop = section.offsetTop - 120;
                     const sectionBottom = sectionTop + section.offsetHeight;
                     if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
                         current = item.href;
@@ -63,9 +63,19 @@ export const Navbar = () => {
         };
 
         window.addEventListener("scroll", handleScroll);
-        handleScroll(); // initialize on load
+        handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // Smooth scroll on hash change
+    useEffect(() => {
+        if (hash) {
+            const element = document.querySelector(hash);
+            if (element) element.scrollIntoView({ behavior: "smooth" });
+        } else {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    }, [hash]);
 
     // Neon hover/bouncy underline effect
     const navLinkClasses = (href) =>
@@ -83,23 +93,29 @@ export const Navbar = () => {
         <nav
             className={cn(
                 "fixed w-full z-50 transition-all duration-300",
-                isScrolled ? "py-3 bg-background/100 border-b border-border" : "py-5 bg-background/100"
+                isScrolled
+                    ? "py-3 bg-background/100 border-b border-border"
+                    : "py-5 bg-background/100"
             )}
         >
             <div className="container flex items-center justify-between">
                 {/* Logo */}
-                <a className="text-xl font-bold text-primary flex items-center" href="#hero" onClick={() => navigate("/#home")}>
+                <Link
+                    to="#hero"
+                    className="text-xl font-bold text-primary flex items-center"
+                    onClick={() => setIsMenuOpen(false)}
+                >
                     <span className="relative z-10">
                         <span className="text-glow text-foreground">Bishal Bhandari</span> Portfolio
                     </span>
-                </a>
+                </Link>
 
                 {/* Desktop nav */}
                 <div className="hidden md:flex items-center space-x-6">
                     {navItems.map((item, key) => (
-                        <a key={key} href={item.href} className={navLinkClasses(item.href)}>
+                        <Link key={key} to={item.href} className={navLinkClasses(item.href)}>
                             <span className="relative z-10">{item.name}</span>
-                        </a>
+                        </Link>
                     ))}
 
                     {/* Theme toggle */}
@@ -150,14 +166,14 @@ export const Navbar = () => {
                     </button>
 
                     {navItems.map((item, key) => (
-                        <a
+                        <Link
                             key={key}
-                            href={item.href}
+                            to={item.href}
                             onClick={() => setIsMenuOpen(false)}
                             className={navLinkClasses(item.href)}
                         >
                             <span className="relative z-10">{item.name}</span>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>

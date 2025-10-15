@@ -1,7 +1,8 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { Home } from "./pages/Home";
-import { Toaster } from "react-hot-toast"; // ✅ Import Toaster
+import { Toaster } from "react-hot-toast";
+import { ScrollToHash } from "./components/scrollToHash";
 
 function App() {
   return (
@@ -36,10 +37,12 @@ function App() {
 
 
       <HashRouter>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <ScrollToHash>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ScrollToHash>
       </HashRouter>
     </>
   );
