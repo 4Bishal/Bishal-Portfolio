@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouHashRouter, ter, Route, Routes } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { Home } from "./pages/Home";
 import { Toaster } from "react-hot-toast"; // ✅ Import Toaster
@@ -35,12 +35,12 @@ function App() {
       />
 
 
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
