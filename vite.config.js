@@ -3,13 +3,16 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
-// https://vitejs.dev/config/
-export default defineConfig({
+// Exact repo name (case-sensitive) for GitHub Pages
+const repoName = "Bishal-Portfolio";
+
+export default defineConfig(({ mode }) => ({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/Bishal-Portfolio/",
-});
+  // Only use /Portfolio/ in production, localhost stays clean
+  base: mode === "production" ? `/${repoName}/` : "/",
+}));
