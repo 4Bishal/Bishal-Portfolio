@@ -1,16 +1,45 @@
-# React + Vite
+# Bishal Bhandari | Full Stack Developer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 **MERN Stack Developer | AI Enthusiast**  
+Building modern, scalable web applications with **React, Node.js, Express, MongoDB**, and integrating **AI-powered solutions**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Skills
+- **Frontend:** React.js, HTML5, CSS3, Tailwind CSS, Bootstrap, JavaScript  
+- **Backend:** Node.js, Express.js, REST APIs, Server-side Logic  
+- **Database:** MongoDB  
+- **Other Tools:** WebRTC, Socket.io, UploadThing, Generative AI APIs, EJS  
+- **Version Control:** Git, GitHub  
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 💼 Featured Projects
 
-## Expanding the ESLint configuration
+### [Confera | Real-Time Video Conferencing](#)  
+*Tech Stack: MongoDB, Express, React, Node.js, WebRTC, Socket.io*  
+- Full-stack platform with real-time audio/video, chat, and screen sharing  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### [FreelanceHub | Freelancer-Client Marketplace](#)  
+*Tech Stack: MongoDB, Express, React, Node.js, Tailwind CSS*  
+- Marketplace connecting freelancers and clients with project management and bidding  
+
+### [Samva | AI-Powered Conversational Platform](#)  
+*Tech Stack: MongoDB, Express, React, Node.js, Generative AI API, Tailwind CSS*  
+- AI chat platform providing context-aware responses and scalable architecture  
+
+### [Awasly | Property Management System](#)  
+*Tech Stack: Node.js, Express.js, MongoDB, HTML5, CSS3, Bootstrap, JavaScript, EJS*  
+- Property listing platform with CRUD, authentication, reviews, and responsive UI  
+
+---
+
+## 📫 Contact
+- **Email:** bishal30112006@gmail.com  
+- **Portfolio:** [bhandari-bishal.com.np](https://bhandari-bishal.com.np)  
+- **LinkedIn:** [linkedin.com/in/bishal-bhandari](https://www.linkedin.com/in/bishal-bhandari-a63b8926/)  
+- **GitHub:** [github.com/4Bishal](https://github.com/4Bishal)  
+
+---
+
+⭐ If you like my work, feel free to **follow me** and **check out my projects**!
