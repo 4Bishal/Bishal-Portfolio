@@ -2,7 +2,7 @@
     "name": "Bishal Bhandari Portfolio",
     "short_name": "Portfolio",
     "description": "Portfolio website of Bishal Bhandari - React + Vite + Tailwind",
-    "start_url": "/index.html",
+    "start_url": "/",
     "display": "standalone",
     "theme_color": "#0f172a",
     "background_color": "#f8fafc",
