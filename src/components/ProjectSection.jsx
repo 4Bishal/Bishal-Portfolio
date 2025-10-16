@@ -56,51 +56,76 @@ export const ProjectsSection = () => {
                     crafted with attention to detail, performance, and user experience.
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     {projects.map((project) => (
                         <div
                             key={project.id}
-                            className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover transition-transform duration-300 hover:scale-105"
+                            className="group bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
                         >
-                            <div className="h-48 overflow-hidden relative flex items-center justify-center bg-gray-50 dark:bg-gray-800">
+                            <div className="aspect-video overflow-hidden relative bg-muted">
                                 <img
                                     src={project.image}
                                     alt={project.title}
-                                    className="h-32 object-contain transition-transform duration-500 group-hover:scale-105"
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="hidden md:flex absolute bottom-4 left-4 right-4 gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                                     <a
                                         href={project.demoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-3 py-1 bg-primary text-white rounded font-medium hover:scale-105 transition-transform duration-300"
+                                        className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium text-center hover:bg-primary/90 transition-colors"
                                     >
-                                        Demo
+                                        Live Demo
                                     </a>
                                     <a
                                         href={project.githubUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-3 py-1 bg-gray-800 text-white rounded font-medium hover:scale-105 transition-transform duration-300"
+                                        className="flex-1 px-4 py-2 bg-card/95 backdrop-blur-sm text-foreground rounded-lg font-medium text-center hover:bg-card transition-colors"
                                     >
-                                        GitHub
+                                        Code
                                     </a>
                                 </div>
                             </div>
 
-                            <div className="p-4">
-                                <div className="flex flex-wrap gap-2 mb-3">
+                            <div className="p-6 flex flex-col flex-grow">
+                                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                                    {project.title}
+                                </h3>
+                                <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
+                                    {project.description}
+                                </p>
+                                <div className="flex flex-wrap gap-2 mb-4">
                                     {project.tags.map((tag, idx) => (
                                         <span
                                             key={idx}
-                                            className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                                            className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-secondary-foreground"
                                         >
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
-                                <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
-                                <p className="text-sm text-muted-foreground">{project.description}</p>
+
+                                {/* Mobile buttons - always visible at bottom */}
+                                <div className="flex md:hidden gap-3 mt-auto">
+                                    <a
+                                        href={project.demoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium text-center hover:bg-primary/90 transition-colors"
+                                    >
+                                        Live Demo
+                                    </a>
+                                    <a
+                                        href={project.githubUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex-1 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg font-medium text-center hover:bg-secondary/90 transition-colors"
+                                    >
+                                        Code
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     ))}
