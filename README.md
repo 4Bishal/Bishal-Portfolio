@@ -16,19 +16,20 @@ Building modern, scalable web applications with **React, Node.js, Express, Mongo
 
 ## 💼 Featured Projects
 
-### [Confera | Real-Time Video Conferencing](#)  
+### [Confera | Real-Time Video Conferencing](https://confera-08ud.onrender.com/)  
 *Tech Stack: MongoDB, Express, React, Node.js, WebRTC, Socket.io*  
 - Full-stack platform with real-time audio/video, chat, and screen sharing  
 
-### [FreelanceHub | Freelancer-Client Marketplace](#)  
+### [FreelanceHub | Freelancer-Client Marketplace](https://freelancehub-xqif.onrender.com/
+)  
 *Tech Stack: MongoDB, Express, React, Node.js, Tailwind CSS*  
 - Marketplace connecting freelancers and clients with project management and bidding  
 
-### [Samva | AI-Powered Conversational Platform](#)  
+### [Samva | AI-Powered Conversational Platform](https://samva.onrender.com)  
 *Tech Stack: MongoDB, Express, React, Node.js, Generative AI API, Tailwind CSS*  
 - AI chat platform providing context-aware responses and scalable architecture  
 
-### [Awasly | Property Management System](#)  
+### [Awasly | Property Management System](https://aawasly.onrender.com)  
 *Tech Stack: Node.js, Express.js, MongoDB, HTML5, CSS3, Bootstrap, JavaScript, EJS*  
 - Property listing platform with CRUD, authentication, reviews, and responsive UI  
 
