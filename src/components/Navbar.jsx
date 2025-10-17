@@ -20,7 +20,7 @@ export const Navbar = () => {
 
     // Initialize theme
     useEffect(() => {
-        const storedTheme = localStorage.getItem("theme");
+        const storedTheme = localStorage.getItem("theme") || "dark";
         if (storedTheme === "dark") {
             document.documentElement.classList.add("dark");
             setIsDarkMode(true);

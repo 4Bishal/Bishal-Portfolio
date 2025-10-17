@@ -8,7 +8,7 @@ export const HeroSection = () => {
 
     useEffect(() => {
         // Initialize theme from localStorage
-        const storedTheme = localStorage.getItem("theme") || "light";
+        const storedTheme = localStorage.getItem("theme") || "dark";
         const dark = storedTheme === "dark";
 
         if (dark) {
