@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { Home } from "./pages/Home";
 import { Toaster } from "react-hot-toast";
-import { ScrollToHash } from "./components/scrollToHash";
+
 
 function App() {
   return (
