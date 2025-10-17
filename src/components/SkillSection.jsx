@@ -72,8 +72,15 @@ export const SkillsSection = () => {
     const [activeCategory, setActiveCategory] = useState("Frontend");
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [hoverStyle, setHoverStyle] = useState({});
+    const [supportsHover, setSupportsHover] = useState(true);
     const categories = Object.keys(categoryInfo);
     const filteredSkills = skills.filter((s) => s.category === activeCategory);
+
+    // Detect if device supports hover
+    useEffect(() => {
+        const hasHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+        setSupportsHover(hasHover);
+    }, []);
 
     // Detect dark mode
     useEffect(() => {
@@ -84,8 +91,9 @@ export const SkillsSection = () => {
         return () => matchMedia.removeEventListener("change", listener);
     }, []);
 
-    // Skill card tilt
+    // Skill card tilt (only for hover-capable devices)
     const handleMouseMove = (e, idx) => {
+        if (!supportsHover) return;
         const card = e.currentTarget;
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -101,6 +109,7 @@ export const SkillsSection = () => {
     };
 
     const handleMouseLeave = (idx) => {
+        if (!supportsHover) return;
         setHoverStyle((prev) => ({ ...prev, [idx]: "rotateX(0deg) rotateY(0deg) scale(1)" }));
     };
 
@@ -117,37 +126,17 @@ export const SkillsSection = () => {
                     </p>
                 </div>
 
-                {/* Category Navigation with small badge counts */}
+                {/* Category Navigation */}
                 <div className="flex flex-wrap justify-center gap-3 mb-12">
-                    {categories.map((cat, idx) => {
+                    {categories.map((cat) => {
                         const Icon = categoryInfo[cat].icon;
                         const isActive = activeCategory === cat;
                         const count = skills.filter((s) => s.category === cat).length;
-
-                        const [tiltStyle, setTiltStyle] = useState("rotateX(0deg) rotateY(0deg) scale(1)");
-
-                        const handleTiltMove = (e) => {
-                            const card = e.currentTarget;
-                            const rect = card.getBoundingClientRect();
-                            const x = e.clientX - rect.left;
-                            const y = e.clientY - rect.top;
-                            const centerX = rect.width / 2;
-                            const centerY = rect.height / 2;
-                            const rotateX = ((y - centerY) / centerY) * 6;
-                            const rotateY = ((x - centerX) / centerX) * -6;
-                            setTiltStyle(`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`);
-                        };
-
-                        const handleTiltLeave = () => setTiltStyle("rotateX(0deg) rotateY(0deg) scale(1)");
-
                         return (
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
-                                onMouseMove={handleTiltMove}
-                                onMouseLeave={handleTiltLeave}
-                                style={{ transform: tiltStyle }}
-                                className={`group relative px-6 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer ${isActive
+                                className={`relative px-6 py-3 rounded-full font-medium transition-all duration-300 cursor-pointer ${isActive
                                     ? "bg-primary text-white shadow-lg"
                                     : "bg-card text-foreground border border-border hover:border-primary/50"
                                     }`}
@@ -156,8 +145,6 @@ export const SkillsSection = () => {
                                     <Icon className="w-5 h-5" />
                                     <span>{cat}</span>
                                 </div>
-
-                                {/* Small count badge */}
                                 <div className="absolute -top-3 -right-3 w-7 h-7 rounded-full flex items-center justify-center bg-card dark:bg-card-dark shadow-md">
                                     <span className="text-xs font-semibold text-foreground">{count}</span>
                                 </div>
@@ -180,7 +167,9 @@ export const SkillsSection = () => {
                                 key={idx}
                                 onMouseMove={(e) => handleMouseMove(e, idx)}
                                 onMouseLeave={() => handleMouseLeave(idx)}
-                                style={{ transform: hoverStyle[idx] || "rotateX(0deg) rotateY(0deg) scale(1)" }}
+                                style={{
+                                    transform: hoverStyle[idx] || "rotateX(0deg) rotateY(0deg) scale(1)",
+                                }}
                                 className="group relative bg-card rounded-2xl p-6 border border-border hover:border-primary/50 transition-all duration-300 shadow-md cursor-pointer will-change-transform"
                             >
                                 <div className="relative flex items-center gap-4 mb-4">
