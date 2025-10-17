@@ -34,24 +34,27 @@
     <!-- Force default dark theme BEFORE React loads -->
     <script>
       (function () {
-        const savedTheme = localStorage.getItem("theme");
-        // Default to dark if no saved theme
-        const theme = savedTheme || "dark";
+        try {
+          const savedTheme = localStorage.getItem("theme");
+          const theme = savedTheme || "dark";
 
-        if (theme === "dark") {
+          // Apply dark class immediately
+          if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+          }
+
+          console.log("Initial theme set to:", theme); // Debug log
+        } catch (e) {
+          console.error("Theme initialization error:", e);
           document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-
-        // Save default if not already saved
-        if (!savedTheme) {
-          localStorage.setItem("theme", "dark");
         }
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-By8AGIpH.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CUx-46r8.css">
+    <script type="module" crossorigin src="/assets/index-xkrPi_H5.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DCU2U14p.css">
   </head>
   <body>
     <div id="root"></div>
