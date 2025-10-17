@@ -31,8 +31,19 @@
         }
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-CtdLkRub.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-yHjdFtnH.css">
+    <!-- Force default dark theme BEFORE React loads -->
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const theme = savedTheme || (prefersDark ? "dark" : "dark"); // always dark by default
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-BxS3sM7C.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-IjigHXWx.css">
   </head>
   <body>
     <div id="root"></div>
