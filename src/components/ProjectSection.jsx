@@ -33,13 +33,13 @@ const projects = [
     },
     {
         id: 4,
-        title: "Awasly",
+        title: "BrainFolder",
         description:
-            "Property listing app inspired by Airbnb, supporting reviews, authentication, and MVC architecture.",
-        image: "/projects/aawasly.png",
-        tags: ["Node.js", "Express", "MongoDB", "EJS", "Bootstrap"],
-        demoUrl: "https://aawasly.onrender.com",
-        githubUrl: "https://github.com/4Bishal/Awasly",
+            "A modern knowledge-organizing workspace to create structured notes, nested pages, embed media, search instantly, and export content with ease.",
+        image: "/projects/brainfolder.png",
+        tags: ["Next.js", "Convex", "TailwindCSS", "BlockNote", "Puppeteer", "Clerk"],
+        demoUrl: "https://brainfolder.vercel.app/",
+        githubUrl: "https://github.com/4Bishal/brainfolder",
     },
 ];
 

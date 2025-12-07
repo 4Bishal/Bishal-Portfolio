@@ -29,10 +29,10 @@ Building modern, scalable web applications with **React, Node.js, Express, Mongo
 *Tech Stack: MongoDB, Express, React, Node.js, Generative AI API, Tailwind CSS*  
 - AI chat platform providing context-aware responses and scalable architecture  
 
-### [Awasly | Property Management System](https://aawasly.onrender.com)  
-*Tech Stack: Node.js, Express.js, MongoDB, HTML5, CSS3, Bootstrap, JavaScript, EJS*  
-- Property listing platform with CRUD, authentication, reviews, and responsive UI  
-
+### [BrainFolder | Knowledge-Organizing Workspace](https://brainfolder.vercel.app/)  
+*Tech Stack: Next.js, Convex, TailwindCSS, BlockNote, Puppeteer, Clerk*  
+- Real-time workspace for structured notes, nested pages, media uploads, instant search, and multi-format content export
+ 
 ---
 
 ## 📫 Contact
