@@ -20,8 +20,7 @@ Building modern, scalable web applications with **React, Node.js, Express, Mongo
 *Tech Stack: MongoDB, Express, React, Node.js, WebRTC, Socket.io*  
 - Full-stack platform with real-time audio/video, chat, and screen sharing  
 
-### [FreelanceHub | Freelancer-Client Marketplace](https://freelancehub-xqif.onrender.com/
-)  
+### [FreelanceHub | Freelancer-Client Marketplace](https://freelancehub-xqif.onrender.com/)  
 *Tech Stack: MongoDB, Express, React, Node.js, Tailwind CSS*  
 - Marketplace connecting freelancers and clients with project management and bidding  
 
