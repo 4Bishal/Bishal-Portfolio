@@ -81,7 +81,7 @@ export const AboutSection = () => {
                             </a>
 
                             <a
-                                href="/Bishal_Bhandari_Resume.pdf"
+                                href="/Bishal_Bhandari_Resume.PDF"
                                 download="Bishal_Bhandari_Resume.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
